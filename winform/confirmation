@@ -1,0 +1,11 @@
+ private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("你确定要退出程序吗？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+            {
+                MessageBox.Show("you chosed ok");
+            }
+            else
+            {
+                MessageBox.Show("you chosed cancel");
+            }
+        }

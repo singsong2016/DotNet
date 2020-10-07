@@ -1,0 +1,17 @@
+ #region event
+  /// <summary>
+  /// 传递参数 WarnType , int max  ,int min, int now 分别代表警告类型, 最大最小值,当前值 
+  /// </summary>
+  public delegate void Notification(Form1.WarnType warnType, long Max, long Min, long Now);
+  public event Notification WarnNotify;
+
+  public enum WarnType
+  {
+      CPU温度告警, CPU百分比报警, 内存百分比报警, 进程使用内存报警, 进程句柄数报警, 进程线程报警
+  }
+  
+  private void Warn(WarnType warnType, long max, long min, long now)
+  {
+       WarnNotify?.Invoke(warnType, max, min, now);
+  }
+  #endregion

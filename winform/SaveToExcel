@@ -1,0 +1,62 @@
+  //nuget closedxml
+  private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount < 1)
+            {
+                MessageBox.Show("没有数据，请确认！");
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            //设置过滤文件类型
+            sfd.Filter = "表格文件（*.xlsx）|*.xlsx";
+            //保留上次路径记忆
+            sfd.RestoreDirectory = true;
+            //设置默认文件名
+            sfd.FileName = DateTime.Now.ToString("yyyy_MM_dd") + "records.xlsx";
+
+            //保存文件
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                //获取文件路径
+                string localFilePath = sfd.FileName.ToString();
+
+                var dt = dataGridView1.DataSource as DataTable;
+                // string sql = "select * from monitorRecords t ";
+                //var dt = DB.geTable(sql, out _);
+                SaveDataToXlsx(localFilePath, dt);
+
+            }
+        }
+        
+  private static void SaveDataToXlsx(string localFilePath, DataTable dt)
+        {
+            var file = new XLWorkbook();
+
+            var worksheet = file.AddWorksheet(DateTime.Now.ToString("yyyy_MM_dd_HH_mm") + "records");
+
+
+            #region 写入 dataTable数据到 xlsx 文件
+            //dataTable 标题栏写入 excel
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                worksheet.Cell(1, i + 1).Value = dt.Columns[i].ColumnName;
+            }
+            //写dataTable内容
+            for (int i = 1; i < dt.Rows.Count + 1; i++)
+            {
+                for (int j = 1; j < dt.Columns.Count + 1; j++)
+                {
+                    worksheet.Cell(i + 1, j).Value = dt.Rows[i - 1][j - 1].ToString();
+                }
+
+            }
+            #endregion
+
+            file.SaveAs(localFilePath);
+            MessageBox.Show("EXCEL数据文件已保存");
+            //string fileNameExt = localFilePath.Substring(localFilePath.LastIndexOf("\\") + 1); //获取文件名，不带路径
+            //string filePath = localFilePath.Substring(0, localFilePath.LastIndexOf("\\"));//获取文件路径，不带文件名
+            ////给文件名前加上时间
+            //var newFileName = DateTime.Now.ToString("yyyyMMdd") + fileNameExt;
+        }
