@@ -1,0 +1,14 @@
+  private async void button1_Click(object sender, EventArgs e)
+        {
+            label1.Text = "waiting";
+            button1.Enabled = false;
+            await Task.Factory.StartNew(g);
+            label1.Text = "over";
+            button1.Enabled = true;
+        }
+        
+        private void g()
+        {
+            Thread.Sleep(5000);
+            MessageBox.Show("hi , 5s passed away");
+        } 
