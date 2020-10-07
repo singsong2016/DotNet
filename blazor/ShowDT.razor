@@ -1,0 +1,30 @@
+
+@{
+    var n = dts.Columns.Count;
+    var r = dts.Rows.Count;
+}
+
+<table border="1">
+    <tr>
+        @for (int i = 0; i < n; i++)
+        {
+            <th>@dts.Columns[i].ColumnName</th>
+        }
+    </tr>
+
+    @for (int i = 0; i < r; i++)
+    {
+        <tr>
+            @for (int j = 0; j < n; j++)
+            {
+                <td>@dts.Rows[i][j]</td>
+            }
+        </tr>
+    }
+</table>
+
+@code
+ {
+    [Parameter]
+    public System.Data.DataTable dts { set; get; }
+}
