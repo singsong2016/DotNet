@@ -1,1 +1,4 @@
 my repos of dotnet
+system installation
+windows:BIOS : UEFI==>GPT   Legacy==>MBR
+Linux: UEFI
