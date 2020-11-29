@@ -39,3 +39,20 @@
             return re;
         }
     
+
+       static void Main(string[] args)
+        {
+            var s = new string[] { "a", "b", "c" };
+
+            var b =Combination(s);
+
+            foreach (var keyValuePair in b)
+            {
+                Console.WriteLine(keyValuePair.Key);
+                foreach (var list in keyValuePair.Value)
+                {
+                    Console.WriteLine(string.Join("",list));
+                }
+            }
+
+        }
