@@ -1,10 +1,4 @@
- public  class dataMethods
-    {
-        /// <summary>
-        /// md5 encrypt
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
+
         public static string Md5Password(string password)
         {
             System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
@@ -15,21 +9,6 @@
         }
 
 
-        #region combination
-        public static void combinationDemo()
-        {
-            var a = Combination("a", "b", "c");
-
-            foreach (var item in a.Keys)
-            {
-                Console.Write(item + ":");
-                foreach (var i in a[item])
-                {
-                    Console.Write(i + " ");
-                }
-                Console.WriteLine();
-            }
-        }
         public static Dictionary<int, List<string>> Combination(params string[] s)
         {
             var re = new Dictionary<int, List<string>>();
@@ -61,4 +40,4 @@
             return re;
         } 
         #endregion
-    }
+    
