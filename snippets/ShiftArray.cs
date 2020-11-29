@@ -3,17 +3,18 @@
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
-        /// <param name="Back"></param>
+        /// <param name="backWard"></param>
         /// <param name="index"></param>
-        public static void ShiftArray<T>(T[] input, bool BackWard = true, int index = 0)
+        /// <param name="t"></param>
+        public static void ShiftArray<T>(T[] input, bool backWard = true, int index = 0, T t = default)
         {
-            if (Back)
+            if (backWard)
             {
                 for (var i = input.Length - 1; i > index; i--)
                 {
                     input[i] = input[i - 1];
                 }
-                input[0] = default;
+                input[0] = t;
             }
             else
             {
@@ -21,6 +22,6 @@
                 {
                     input[i] = input[i + 1];
                 }
-                input[input.Length - 1] = default;
+                input[input.Length - 1] = t;
             }
         }
