@@ -9,35 +9,33 @@
         }
 
 
-        public static Dictionary<int, List<string>> Combination(params string[] s)
+        public static Dictionary<int, List<List<T>>> Combination<T>(params T[] s)
         {
-            var re = new Dictionary<int, List<string>>();
+            var re = new Dictionary<int, List<List<T>>>();
 
-            for (int i = 0; i < s.Length; i++)
+            var init = s.Select(t => new List<T> { t }).ToList();
+
+            re.Add(0, init);
+
+            for (int i = 1; i < s.Length; i++)
             {
-                if (i == 0)
-                {
-                    re.Add(i, s.ToList());
-                }
+                var ad = new List<List<T>>();
 
-                if (i > 0)
+                foreach (var list in re[i - 1])
                 {
-                    var ad = new List<string>();
-                    foreach (var item in re[i - 1])
+                    var n = new List<T>();
+                    list.ForEach(n.Add);
+
+                    foreach (var v in s)
                     {
-                        foreach (var j in s)
-                        {
-                            if (!item.Contains(j))
-                            {
-                                ad.Add(item + j);
-                            }
-                        }
+                        if (list.Contains(v)) continue;
+                        n.Add(v);
+                        break;
                     }
-                    re.Add(i, ad);
+                    ad.Add(n);
                 }
+                re.Add(i, ad);
             }
-
             return re;
-        } 
-        #endregion
+        }
     
