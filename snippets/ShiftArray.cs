@@ -6,7 +6,7 @@
         /// <param name="backWard"></param>
         /// <param name="index"></param>
         /// <param name="t"></param>
-        public static void ShiftArray<T>(T[] input, bool backWard = true, int index = 0, T t = default)
+        public static void ShiftArray<T>(T[] input,T t = default, bool backWard = true, int index = 0 )
         {
             if (backWard)
             {
