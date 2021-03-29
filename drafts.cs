@@ -1,4 +1,18 @@
-      1. message box
+private static void ArrayIndex()
+    {
+        var a = new (string mid, string name)[2];
+
+        a[0] = ("13", "wang");
+
+        a[1] = ("123", "liu");
+
+        var i = Array.FindIndex(a, x => x.mid == "123");
+
+        Console.WriteLine(i);
+    }    
+-----------------------------------------------------------------------------------------------------------------
+
+1. message box
        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, uint uType);
 
@@ -9,7 +23,7 @@
 
         }
 
-
+----------------------------------------------------------------------------------------------------------------
 2.      var a = Enumerable.Range(10, 20);
 
             foreach (var i in a)
@@ -17,12 +31,13 @@
                 Console.WriteLine(i);
             }
 
-
+-------------------------------------------------------------------------------------------------------------------------------
 3.  File.AppendAllText("a.txt", "hello world");
 
             var a = new FileInfo("a.txt");
 
             Console.WriteLine(a.Length);
+-------------------------------------------------------------------------------------------------------------------------------
 
 4.  private static void Practice()
         {
@@ -49,6 +64,7 @@
             Console.WriteLine(new string(n));
         }
 
+-------------------------------------------------------------------------------------------------------------------------------
 5.  private static void Practice()
         {
             var s = "hello,world";
@@ -71,6 +87,7 @@
             Console.WriteLine(new string(n));
         }
 
+-------------------------------------------------------------------------------------------------------------------------------
 6.   private static void Practice()
         {
             var s = "hello,world";
@@ -95,6 +112,8 @@
             Console.WriteLine(new string(n));
             Console.WriteLine(new string(n2));
         }
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 7.  private static void Practice()
         {
@@ -121,6 +140,7 @@
             Console.WriteLine(n2);
         }
 
+-------------------------------------------------------------------------------------------------------------------------------
 8.  private static void Practice()
         {
             var s = "hello,world";
