@@ -13,16 +13,16 @@ namespace console
 
         private static SQLiteConnection con=new SQLiteConnection(db);
 
-        public static DataTable GetData(string sql)
+        public static Task<DataTable> GetData(string sql)
         {
             try
             {
                 con.Open();
                 var dt = new DataTable();
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, con);
+                OracleDataAdapter da = new OracleDataAdapter(sql, con);
                 da.Fill(dt);
                 dt.TableName = "return data table";
-                return dt;
+                return Task.FromResult(dt);
             }
             catch (Exception e)
             {
@@ -34,19 +34,19 @@ namespace console
             }
         }
 
-        public static int ExecuteSql(string sql)
+        public static Task<int> ExecuteSql(string sql)
         {
-          
+
             try
             {
                 con.Open();
-                var cmd = new SQLiteCommand(sql, con);
+                var cmd = new OracleCommand(sql, con);
                 int n = cmd.ExecuteNonQuery();
-                return n;
+                return Task.FromResult(n);
             }
             catch (Exception e)
             {
-                return 0;
+                return Task.FromResult(0);
             }
             finally
             {
