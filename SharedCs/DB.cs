@@ -1,7 +1,7 @@
 
 using System;
 using System.Data;
-using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 
 namespace console
 {
