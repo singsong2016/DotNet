@@ -9,9 +9,9 @@ namespace console
     public class DB
     {
 
-        private static readonly string db = "data source=data.db";
+        private static readonly string db = "data source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = x)(PORT = x)))   (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = x) )  );user id=x; password=x; persist security info=true;
 
-        private static SQLiteConnection con=new SQLiteConnection(db);
+        private static OracleConnection con=new OracleConnection(db);
 
         public static Task<DataTable> GetData(string sql)
         {
