@@ -1,13 +1,5 @@
 
-        public static string Md5Password(string password)
-        {
-            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-
-            byte[] pwdByte = System.Text.Encoding.Default.GetBytes(password);
-            string pwdHash = BitConverter.ToString(md5.ComputeHash(pwdByte)).Replace("-", string.Empty);
-            return pwdHash;
-        }
-
+-----------------------对输入的类型T的n个元素进行任意组合，返回组合的list结果
 
         public static Dictionary<int, List<List<T>>> Combination<T>(params T[] s)
         {
