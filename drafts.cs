@@ -42,9 +42,3 @@ private static void ArrayIndex()
             Console.WriteLine(a.Length);
 -------------------------------------------------------------------------------------------------------------------------------
 
-
-            }
-
-            Console.WriteLine(n);
-            Console.WriteLine(n2);
-        }
