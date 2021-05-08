@@ -1,4 +1,4 @@
-//搜索
+//----------------------------------------------------------------搜索
 $(document).ready(function () {
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -8,7 +8,9 @@ $(document).ready(function () {
     });
 });
 
-////排序
+
+
+//--------------------------------------------------------------排序
 th = document.getElementsByTagName('th');
 
 for (var t = 0; t < th.length; t++) {
@@ -93,3 +95,20 @@ function sortTable(t) {
         }
     }
 }
+
+
+//--------------------------------------------------保存为excel------------------
+
+<button id="btn">保存为excel</button>
+
+    <script src="~/Content/jquery.min.js"></script>
+    <script src="~/Content/table2excel.js"></script>
+
+<script>
+    //export to excel
+    $('#btn').click(function () {
+        $('#myTable').table2excel({
+            filename: $('#d1').val() + '@title'
+        });
+    });
+</script>
