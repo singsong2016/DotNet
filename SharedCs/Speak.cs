@@ -1,19 +1,18 @@
   ---------------需要net framework 架构下
-  
-  
-  public static void SpeechDemo(string str)
+  //引用system.speech
+  using System.Speech.Synthesis;
+
+private static void SpeechDemo()
+    {
+        var a = new SpeechSynthesizer();
+
+        var s = a.GetInstalledVoices();
+
+        foreach (var installedVoice in s)
         {
-            var voice = new SpVoice
-            {
-                Rate = 1,
-
-                Volume = 70
-            };
-
-            voice.Voice = voice.GetVoices().Item(1);
-
-            Console.WriteLine(str);
-            voice.Speak(str);
-
-
+            Console.WriteLine(installedVoice.VoiceInfo.Name);
         }
+
+        a.SelectVoice("Microsoft Huihui Desktop");
+        a.Speak("hello");
+    }
