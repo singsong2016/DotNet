@@ -1,4 +1,4 @@
-
+/////array的方法同于List
 ---------------------array的截取---------------------
 
 public static void ArraySkipCopyDemo()
@@ -24,15 +24,15 @@ public static void ArraySkipCopyDemo()
 }
 
 ------------------------------查找array元素-------------
-    private static void ArrayIndex()
-    {
-        var a = new (string mid, string name)[2];
+private static void ArrayIndex()
+{
+    var a = new (string mid, string name)[2];
 
-        a[0] = ("13", "wang");
+    a[0] = ("13", "wang");
 
-        a[1] = ("123", "liu");
+    a[1] = ("123", "liu");
 
-        var i = Array.FindIndex(a, x => x.mid == "123");
+    var i = Array.FindIndex(a, x => x.mid == "123");
 
-        Console.WriteLine(i);
-    }    
+    Console.WriteLine(i);
+}    
