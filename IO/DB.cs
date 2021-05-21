@@ -7,6 +7,12 @@
 
         public static Task<DataTable> GetData(string sql)
         {
+            if (string.IsNullOrEmpty(sql))
+            {
+                return null;
+            }
+
+            
             try
             {
                 con.Open();
@@ -28,6 +34,10 @@
 
         public static Task<int> ExecuteSql(string sql)
         {
+          if (string.IsNullOrEmpty(sql))
+            {
+                return null;
+            }
 
             try
             {
