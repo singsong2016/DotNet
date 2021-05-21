@@ -14,5 +14,5 @@ public static class ExtensionMethod
 
 enum MeaningOfNumber
 {
-    Amount, Indexer, Degree, Length, Position, Place, AgreementMeaning
+    Amount, Indexer, Degree, Length, Position, Place,DateTime, AgreementMeaning
 }
