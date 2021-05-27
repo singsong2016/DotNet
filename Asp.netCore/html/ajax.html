@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hello w</h1>
+</body>
+
+</html>
+<input type="button" value="GetPantry" onclick="getpantry(site)">
+
+<input type="text" id="basket">
+<input type="button" value="Delete" onclick="Delete(site+'/basket/'+$('#basket').val())">
+
+<input type="button" value="Post" onclick="Post(site+'/basket/'+$('#basket').val())">
+
+<input type="button" value="GetBasket" onclick="getbasket(site+'/basket/'+$('#basket').val())">
+
+<input type="button" value="Put" onclick="putbasket(site+'/basket/'+$('#basket').val())">
+
+<p id="ppantry"></p>
+<p id="pbasket"></p>
+<script>
+
+    site = "https://getpantry.cloud/apiv1/pantry/1e8cda95-3a43-44b0-9cf4-a41b01d63405";
+
+    function getpantry(url) {
+        $.get(url, function (data, status) {
+            alert(data.baskets);
+            $("#ppantry").text(data.baskets);
+        });
+    };
+
+    function Delete(basket) {
+        $.ajax({
+            url: basket,
+            type: "delete",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: 20000,
+            success: function (msg) {
+                alert(msg);
+            },
+            error: function (xhr, textstatus, thrown) {
+            },
+        });
+    };
+
+
+    function Post(basket) {
+
+        var da = {};
+		
+        da["param1"] = "val1";
+        da["param2"] = "val2";
+
+        
+        $.ajax({
+            url: basket,
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify(da), //json转为字符串发送
+            timeout: 20000,
+            success: function (msg) {
+                alert(msg);
+            },
+            error: function (xhr, textstatus, thrown) {
+            },
+        });
+    };
+     
+    function getbasket(basket){
+        $.get( basket, function (data, status) {
+            $("#pbasket").text(JSON.stringify(data)); //把json结果转为字符串显示
+        });
+    }
+
+    function putbasket(basket) {
+        var da = {};
+		
+        da["param3"] = "val3";
+        da["param4"] = "val4";
+        $.ajax({
+            url: basket,
+            type: "put",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify(da),
+            timeout: 20000,
+            success: function (msg) {
+                alert(msg);
+            },
+            error: function (xhr, textstatus, thrown) {
+            },
+        });
+    };
+
+</script>
