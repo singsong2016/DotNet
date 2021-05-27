@@ -33,9 +33,18 @@
     site = "https://getpantry.cloud/apiv1/pantry/1e8cda95-3a43-44b0-9cf4-a41b01d63405";
 
     function getpantry(url) {
-        $.get(url, function (data, status) {
-            alert(data.baskets);
-            $("#ppantry").text(data.baskets);
+        $.ajax({
+            url: url,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: 20000,
+            success: function (data) {
+                $("#ppantry").text(JSON.stringify(data));
+            },
+            error: function (xhr, textstatus, thrown) {
+                alert(textstatus);
+            },
         });
     };
 
@@ -50,6 +59,7 @@
                 alert(msg);
             },
             error: function (xhr, textstatus, thrown) {
+                alert(textstatus);
             },
         });
     };
@@ -70,17 +80,28 @@
             dataType: "json",
             data:JSON.stringify(da), //json转为字符串发送
             timeout: 20000,
-            success: function (msg) {
-                alert(msg);
+            success: function (data) {
+                alert(JSON.stringify(data));
             },
             error: function (xhr, textstatus, thrown) {
+                alerttextstatus()
             },
         });
     };
      
     function getbasket(basket){
-        $.get( basket, function (data, status) {
-            $("#pbasket").text(JSON.stringify(data)); //把json结果转为字符串显示
+        $.ajax({
+            url: basket,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: 20000,
+            success: function (data) {
+                $("#pbasket").text(JSON.stringify(data));
+            },
+            error: function (xhr, textstatus, thrown) {
+                alert(textstatus);
+            },
         });
     }
 
