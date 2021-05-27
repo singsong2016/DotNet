@@ -11,18 +11,26 @@
 </head>
 
 <body>
-    <h1>hello w</h1>
+    <h1>github page && pantry</h1>
 </body>
 
 </html>
-<input type="button" value="GetPantry" onclick="getpantry(site)">
+<input type="button" value="GetPantry" onclick="getpantry(site)"><br>
 
-<input type="text" id="basket">
+<label for="basket">basket</label>
+<input type="text" id="basket"><br>
 <input type="button" value="Delete" onclick="Delete(site+'/basket/'+$('#basket').val())">
 
 <input type="button" value="Post" onclick="Post(site+'/basket/'+$('#basket').val())">
 
 <input type="button" value="GetBasket" onclick="getbasket(site+'/basket/'+$('#basket').val())">
+<br>
+
+
+<label for="key">key</label> 
+<input type="text" name="" id="key">
+<label for="value">value</label>
+<input type="text" name="" id="value">
 
 <input type="button" value="Put" onclick="putbasket(site+'/basket/'+$('#basket').val())">
 
@@ -40,7 +48,7 @@
             dataType: "json",
             timeout: 20000,
             success: function (data) {
-                $("#ppantry").text(JSON.stringify(data));
+                $("#ppantry").text(JSON.stringify(data.baskets));
             },
             error: function (xhr, textstatus, thrown) {
                 alert(textstatus);
@@ -59,20 +67,16 @@
                 alert(msg);
             },
             error: function (xhr, textstatus, thrown) {
-                alert(textstatus);
+                alert(JSON.stringify(xhr));
             },
         });
     };
 
 
     function Post(basket) {
-
         var da = {};
-		
-        da["param1"] = "val1";
-        da["param2"] = "val2";
+        da[$("#key").val()] = $("#value").val();
 
-        
         $.ajax({
             url: basket,
             type: "post",
@@ -81,10 +85,10 @@
             data:JSON.stringify(da), //json转为字符串发送
             timeout: 20000,
             success: function (data) {
-                alert(JSON.stringify(data));
+                $("#pbasket").text(JSON.stringify(data));
             },
             error: function (xhr, textstatus, thrown) {
-                alerttextstatus()
+                $("#pbasket").text(JSON.stringify(xhr));
             },
         });
     };
@@ -108,8 +112,8 @@
     function putbasket(basket) {
         var da = {};
 		
-        da["param3"] = "val3";
-        da["param4"] = "val4";
+        da[$("#key").val()] = $("#value").val();
+       
         $.ajax({
             url: basket,
             type: "put",
@@ -117,8 +121,8 @@
             dataType: "json",
             data:JSON.stringify(da),
             timeout: 20000,
-            success: function (msg) {
-                alert(msg);
+            success: function (data) {
+                $("#pbasket").text(JSON.stringify(data));
             },
             error: function (xhr, textstatus, thrown) {
             },
