@@ -24,22 +24,26 @@
 <script>
 
     function sendmail() {
-        Email.send({
+        if ($('#subject').val() == '') {
+            alert('subject can not be empty');
+        } else {
+            Email.send({
 
-            Host: "smtp.qq.com",
+                Host: "smtp.qq.com",
 
-            Username: "jdcmail@qq.com",
+                Username: "jdcmail@qq.com",
 
-            Password: "zamdemkpzntxbgea",
+                Password: "zamdemkpzntxbgea",
 
-            To: 'jdcmail@qq.com',
+                To: 'jdcmail@qq.com',
 
-            From: "jdcmail@qq.com",
+                From: "jdcmail@qq.com",
 
-            Subject: $('#subject').val(),
+                Subject: $('#subject').val(),
 
-            Body: $('#msg').val()
+                Body: $('#msg').val()
             }).then(message => alert(message));
+        }
     };
 
 
