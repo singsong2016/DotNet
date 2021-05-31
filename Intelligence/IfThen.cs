@@ -2,17 +2,20 @@
 //If Then 类问题推理
 static void Main(string[] args)
 {
-    var inputStr = "g:if rain then ground wet," +  //输入格式：g代表given条件，if then/reflect 代表知识
-                   "if ground wet reflect rain," +
-                   "today ground wet;" +
+    var inputStr = "g:if firewall then visit down," +  //输入格式：g代表given条件，if then/reflect 代表知识
+                   "if server down then visit down," +
+                   "if switch or any other middleware prevent then visit down," +
+                   "now visit down;" +  //知识加条件 自动得到结论
                    "f:today rain or not";  //f:代表find求
 
     Console.WriteLine(IfThen(inputStr));
+
 }
 
 private static string IfThen(string input)
 {
-    var given = input.Substring(2, input.IndexOf("f:", StringComparison.Ordinal)).Split(',');//已知
+    //把输入字符串分离为已知条件的dictionary 和 求
+    var given = input.Substring(2, input.IndexOf("f:", StringComparison.Ordinal)).Split(',');
 
     var knowledge = new Dictionary<string, string>();//知识部分 if then/reflect
     int ifProblem = 0;
@@ -54,16 +57,11 @@ private static string IfThen(string input)
     return "no definite result find";
 }
 
-    //var find = input.Substring(input.IndexOf("f:", StringComparison.Ordinal) + 2);//求
-
-    return "no result find";
-}
-
 private static void AddKnowledge(string c, string s, Dictionary<string, string> knowledge)
 {
     if (s.Contains(c))
     {
-        var a = s.Substring(3, s.IndexOf(c) - 3).Trim(); //if 长度3
+        var a = s.Substring(3, s.IndexOf(c) - 3).Trim();
         var b = s.Substring(s.IndexOf(c) + c.Length).Trim();
         knowledge.Add(a, b);
     }
