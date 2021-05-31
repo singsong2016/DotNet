@@ -29,17 +29,30 @@ private static string IfThen(string input)
         {
             if (ifProblem == 1)//如果是if then类问题
             {
-                foreach (var keyValuePair in knowledge)
+                foreach (var keyValuePair in knowledge) //找确定性结果
                 {
                     if (s.Contains(keyValuePair.Key))//如果condition中有if中的条件，自动得到if中的结果
                     {
                         return keyValuePair.Value;
                     }
                 }
+
+                foreach (var keyValuePair in knowledge) //由结论逆推原因可能性 枚举所有
+                {
+                    if (s.Contains(keyValuePair.Value))
+                    {
+                        Console.WriteLine("maybe " + keyValuePair.Key);
+                    }
+                }
             }
 
         }
     }
+
+    //var find = input.Substring(input.IndexOf("f:", StringComparison.Ordinal) + 2);//求
+
+    return "no definite result find";
+}
 
     //var find = input.Substring(input.IndexOf("f:", StringComparison.Ordinal) + 2);//求
 
